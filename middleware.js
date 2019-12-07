@@ -1,10 +1,11 @@
 function validation(req, res, next) {
   //Problem if I set count variable global it doesnt work as middleware
-  var count = 0;
+  let limit = Math.min(req.query.limit || 4, 500)
+  limit++
+  console.log("limit",limit)
+  
 
-  count++;
-
-  if (count <= 5) {
+  if (limit <= 5) {
     //   console.log("Testreq.connection",req.connection)
 
     if (!req.body.hasOwnProperty("text") || req.body.text === "") {
